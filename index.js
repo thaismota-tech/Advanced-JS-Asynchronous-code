@@ -77,3 +77,21 @@ async function printGithubUserProfile(username) {
     body.append(nombreHTML);
     return { img, name };
 }
+
+// EJERCICIO 7
+async function getAndPrintGitHubUserProfile(username) {
+    try {
+        const response = await fetch(`https://api.github.com/users/${username}`);
+        const user = await response.json();
+        const img = user.avatar_url;
+        const name = user.name
+        const repos = user.public_repos;
+        return `<section>
+    <img src="${img}" alt="${name}">
+    <h1>${name}</h1>
+    <p>Public repos: ${repos}</p>
+</section>`;
+    } catch (error) {
+        console.error("Error al generar la tarjeta HTML:", error);
+    }
+}
