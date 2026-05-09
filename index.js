@@ -11,6 +11,7 @@ async function getAllBreeds() {
 }
 getAllBreeds().then(razas => console.log(razas));
 
+
 //EJERCICIO 2
 async function getRandomDog() {
     try {
@@ -22,6 +23,7 @@ async function getRandomDog() {
     }
 }
 getRandomDog().then(url => console.log("Imagen aleatoria:", url));
+
 
 //EJERCICIO 3
 async function getAllImagesByBreed() {
@@ -35,6 +37,7 @@ async function getAllImagesByBreed() {
 }
 getAllImagesByBreed().then(imagenes => console.log(imagenes));
 
+
 //EJERCICIO 4
 async function getAllImagesByBreed2(breed) {
     try {
@@ -46,6 +49,7 @@ async function getAllImagesByBreed2(breed) {
     }
 }
 
+
 // EJERCICIO 5
 async function getGitHubUserProfile(username) {
     try {
@@ -55,4 +59,21 @@ async function getGitHubUserProfile(username) {
     } catch (error) {
         console.error("Error al obtener el perfil:", error);
     }
+}
+
+
+// EJERCICIO 6
+async function printGithubUserProfile(username) {
+    const response = await fetch(`https://api.github.com/users/${username}`);
+    const user = await response.json();
+    const img = user.avatar_url;
+    const name = user.name;
+    const body = document.querySelector('body');
+    const imagenHTML = document.createElement('img');
+    imagenHTML.src = img;
+    body.append(imagenHTML);
+    const nombreHTML = document.createElement('p');
+    nombreHTML.textContent = name;
+    body.append(nombreHTML);
+    return { img, name };
 }
