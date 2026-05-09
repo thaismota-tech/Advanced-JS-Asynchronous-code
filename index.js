@@ -95,3 +95,16 @@ async function getAndPrintGitHubUserProfile(username) {
         console.error("Error al generar la tarjeta HTML:", error);
     }
 }
+
+// EJERCICIO 8
+async function fetchGithubUsers(userNames) {
+    try {
+        const promises = userNames.map(name =>
+            fetch(`https://api.github.com/${name}`).then(res => res.json())
+        );
+        const users = await Promise.all(promises);
+        return users;
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
