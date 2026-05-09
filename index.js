@@ -25,14 +25,23 @@ getRandomDog().then(url => console.log("Imagen aleatoria:", url));
 
 //EJERCICIO 3
 async function getAllImagesByBreed() {
-  try {
-    const response = await fetch('https://dog.ceo/api/breed/komondor/images');
-    const data = await response.json();
-    return data.message;
-  } catch (error) {
-    console.error("Error al obtener las imágenes de la raza Komondor:", error);
-  }
+    try {
+        const response = await fetch('https://dog.ceo/api/breed/komondor/images');
+        const data = await response.json();
+        return data.message;
+    } catch (error) {
+        console.error("Error al obtener las imágenes de la raza Komondor:", error);
+    }
 }
 getAllImagesByBreed().then(imagenes => console.log(imagenes));
 
 //EJERCICIO 4
+async function getAllImagesByBreed2(breed) {
+    try {
+        const response = await fetch(`https://dog.ceo/api/breed/${breed}/images`);
+        const data = await response.json();
+        return data.message;
+    } catch (error) {
+        console.error("Error al obtener las imágenes:", error);
+    }
+}
