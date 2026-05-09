@@ -45,3 +45,14 @@ async function getAllImagesByBreed2(breed) {
         console.error("Error al obtener las imágenes:", error);
     }
 }
+
+// EJERCICIO 5
+async function getGitHubUserProfile(username) {
+    try {
+        const response = await fetch(`https://api.github.com/users/${username}`);
+        const user = await response.json();
+        return user;
+    } catch (error) {
+        console.error("Error al obtener el perfil:", error);
+    }
+}
